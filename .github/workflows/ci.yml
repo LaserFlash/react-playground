@@ -1,0 +1,125 @@
+name: CI
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Load node_modules cache
+        uses: actions/cache@v2
+        id: cache-node_modules
+        with:
+          path: node_modules
+          key: ${{hashFiles('package-lock.json')}}
+      - name: Install
+        if: steps.cache-node_modules.outputs.cache-hit != 'true'
+        run: npm ci
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Load /node_modules/ cache
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{hashFiles('package-lock.json')}}
+      - name: JS/TS Lint
+        run: npm run lint
+      - name: Style Lint
+        run: npm run stylelint
+
+  test:
+    runs-on: ubuntu-latest
+    needs: [install, lint]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Load /node_modules/ cache
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{hashFiles('package-lock.json')}}
+      - name: Run Tests
+        run: npm run test
+
+  build-storybook:
+    runs-on: ubuntu-latest
+    needs: [install, lint, test]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Load /node_modules/ cache
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{hashFiles('package-lock.json')}}
+      - name: Build
+        run: npm run build-storybook
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: storybook
+          path: storybook-static/
+
+  build-site:
+    runs-on: ubuntu-latest
+    needs: [install, lint, test]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Load /node_modules/ cache
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{hashFiles('package-lock.json')}}
+      - name: Build
+        run: npm run build
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: demo-site
+          path: dist/
+
+  deploy-storybook:
+    runs-on: ubuntu-latest
+    needs: [install, lint, test, build-storybook]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: storybook
+          path: storybook-static
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3.7.0-6
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: storybook-static
+          destination_dir: storybook
+
+  deploy-site:
+    runs-on: ubuntu-latest
+    needs: [install, lint, test, build-site]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: demo-site
+          path: dist
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3.7.0-6
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist
+          destination_dir: demo-site
