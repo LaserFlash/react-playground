@@ -1,0 +1,16 @@
+{
+  "presets": [
+      
+        "@babel/typescript"
+      
+      ,
+        "@babel/preset-react"
+      
+  ],
+  "plugins": ["@babel/plugin-proposal-object-rest-spread" , "react-hot-loader/babel"],
+  "env": {
+    "test": {
+      "plugins": ["@babel/plugin-transform-modules-commonjs"]
+    }
+  }
+}

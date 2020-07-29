@@ -1,0 +1,9 @@
+@import 'base-styles/variables';
+
+.editor-controls{
+  justify-content: center;
+
+  .control-block:not(:first-child){
+    margin-left: $spacer;
+  }
+}

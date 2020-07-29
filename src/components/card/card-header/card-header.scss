@@ -1,0 +1,30 @@
+@import 'base-styles/variables';
+
+.custom-card-header {
+  display: flex;
+  flex-wrap: wrap;
+  padding: $spacer;
+
+  .block:first-child {
+    margin-right: $spacer;
+  }
+
+  .avatar {
+    width: auto;
+    height: 50px;
+    border-radius: $border-radius-sm;
+    margin: auto 0;
+
+    &.round {
+      border-radius: $border-radius-round;
+    }
+  }
+
+  .heading {
+    margin: auto 0;
+
+    h3, h4 {
+      margin: 0;
+    }
+  }
+}

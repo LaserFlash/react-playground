@@ -1,0 +1,41 @@
+// your project variables go here
+// this file can safely be included from multiple locations as variables do
+// not end up in the final compiled CSS.
+
+// spacers
+$spacer-xs: 4px;
+$spacer: 10px;
+$spacer-sm: 25px;
+$spacer-md: 40px;
+$spacer-lg: 50px;
+$spacer-xl: 100px;
+
+// border
+$border-size-sm: 2px;
+$border-size: 4px;
+$border-size-lg: 6px;
+$border-radius-sm: 3px;
+$border-radius-lg: 12px;
+$border-radius-round: 50%;
+
+// colours
+$color-grey-light: #e6e6e6;
+$color-grey: #c3c3c3;
+$color-grey-warm: #707070;
+$color-black: #292929;
+$color-brown: #50433c;
+$color-red: #bb2025;
+$color-green-dark: #33402e;
+$color-green-light: #899a3a;
+$color-yellow: #e6ad30;
+$color-mustard: #c6b253;
+$color-orange: #de8646;
+$color-blue: #5a9bab;
+$color-white: #fff;
+
+// Font
+$font-family: 'Lato', sans-serif;
+$font-size-sm: 12px;
+$font-size: 20px;
+$font-size-md: 24px;
+$font-size-lg: 30px;

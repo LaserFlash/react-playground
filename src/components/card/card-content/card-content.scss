@@ -1,0 +1,8 @@
+@import 'base-styles/variables';
+
+.custom-card-content {
+  display: flex;
+  flex-wrap: wrap;
+  padding: $spacer;
+  margin: auto 0;
+}

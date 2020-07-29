@@ -1,0 +1,9 @@
+@import 'base-styles/variables';
+
+.custom-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: $border-radius-sm;
+  border: solid $border-size-sm black;
+}

@@ -1,0 +1,15 @@
+{
+  "catalyst-frontend": {
+    "name": "react-kanban",
+    "newFolder": false,
+    "buildType": "webpack",
+    "react": true,
+    "jest": true,
+    "typescript": true,
+    "bootstrap": true,
+    "storybook": true,
+    "src": "src",
+    "dist": "dist",
+    "ignoreNewFolderSettings": true
+  }
+}

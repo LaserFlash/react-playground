@@ -1,0 +1,19 @@
+@import 'draft-js/dist/Draft.css';
+@import 'base-styles/variables';
+
+.editor-wrapper {
+
+  &:not(.read-only){
+    border-radius: $border-radius-sm;
+    border: solid $color-grey $border-size-sm;
+    padding: 0 $spacer;
+
+    .editor-controls {
+      border-bottom: solid $color-grey $border-size-sm;
+    }
+
+    .editor {
+      padding:  $spacer 0;
+    }
+  }
+}
