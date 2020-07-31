@@ -17,9 +17,6 @@ export const withInitialContent = () => (
   <RichTextEditor initialRaw={exampleContent} onContentUpdate={action('Content Update')} />
 );
 export const withStringInitialContent = () => (
-  <RichTextEditor
-    initialRaw="a basic string starter"
-    onContentUpdate={action('Content Update')}
-  />
+  <RichTextEditor initialRaw="a basic string starter" onContentUpdate={action('Content Update')} />
 );
 export const isReadOnlyEditor = () => <RichTextEditor initialRaw={exampleContent} isReadOnly />;

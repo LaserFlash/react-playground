@@ -1,0 +1,29 @@
+@import 'base-styles/variables';
+
+.error-message-wrapper {
+  position: relative;
+
+  .error-message {
+    position: absolute;
+    color: $color-white;
+    background-color: $color-red;
+    font-size: $font-size-sm;
+    font-weight: bold;
+    top: 5px;
+    padding: 5px 15px;
+    z-index: 1;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: -5px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid $color-red;
+    clear: both;
+  }
+}

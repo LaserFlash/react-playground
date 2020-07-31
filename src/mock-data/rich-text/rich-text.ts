@@ -11,11 +11,11 @@ export const exampleContent: RawDraftContentState = {
         {
           offset: 0,
           length: 43,
-          style: 'BOLD'
-        }
+          style: 'BOLD',
+        },
       ],
       entityRanges: [],
-      data: {}
+      data: {},
     },
     {
       key: '9t9fd',
@@ -26,11 +26,11 @@ export const exampleContent: RawDraftContentState = {
         {
           offset: 0,
           length: 22,
-          style: 'BOLD'
-        }
+          style: 'BOLD',
+        },
       ],
       entityRanges: [],
-      data: {}
+      data: {},
     },
     {
       key: '9gs2s',
@@ -39,7 +39,7 @@ export const exampleContent: RawDraftContentState = {
       depth: 0,
       inlineStyleRanges: [],
       entityRanges: [],
-      data: {}
+      data: {},
     },
     {
       key: '9hsob',
@@ -48,7 +48,7 @@ export const exampleContent: RawDraftContentState = {
       depth: 0,
       inlineStyleRanges: [],
       entityRanges: [],
-      data: {}
+      data: {},
     },
     {
       key: '7mbik',
@@ -57,7 +57,7 @@ export const exampleContent: RawDraftContentState = {
       depth: 0,
       inlineStyleRanges: [],
       entityRanges: [],
-      data: {}
+      data: {},
     },
     {
       key: 'de7as',
@@ -68,11 +68,11 @@ export const exampleContent: RawDraftContentState = {
         {
           offset: 0,
           length: 12,
-          style: 'BOLD'
-        }
+          style: 'BOLD',
+        },
       ],
       entityRanges: [],
-      data: {}
+      data: {},
     },
     {
       key: '7ec2o',
@@ -81,7 +81,7 @@ export const exampleContent: RawDraftContentState = {
       depth: 0,
       inlineStyleRanges: [],
       entityRanges: [],
-      data: {}
+      data: {},
     },
     {
       key: '8rtt7',
@@ -90,7 +90,7 @@ export const exampleContent: RawDraftContentState = {
       depth: 0,
       inlineStyleRanges: [],
       entityRanges: [],
-      data: {}
+      data: {},
     },
     {
       key: 'afmdf',
@@ -99,7 +99,7 @@ export const exampleContent: RawDraftContentState = {
       depth: 0,
       inlineStyleRanges: [],
       entityRanges: [],
-      data: {}
+      data: {},
     },
     {
       key: '25sus',
@@ -110,14 +110,14 @@ export const exampleContent: RawDraftContentState = {
         {
           offset: 0,
           length: 27,
-          style: 'BOLD'
-        }
+          style: 'BOLD',
+        },
       ],
       entityRanges: [],
-      data: {}
-    }
+      data: {},
+    },
   ],
-  entityMap: {}
+  entityMap: {},
 };
 
 export default exampleContent;

@@ -5,7 +5,7 @@ import CoverImage from './cover-image';
 
 export default {
   title: 'Cover Image',
-  component: CoverImage
+  component: CoverImage,
 };
 
 const { image } = detailedCards[0];

@@ -4,7 +4,7 @@ import { detailedCards } from 'mock-data/cards/detailed-cards';
 import Card from 'react-bootstrap/Card';
 
 export default {
-  title: 'Cards/Bootstrap Card'
+  title: 'Cards/Bootstrap Card',
 };
 
 const card = detailedCards[0];

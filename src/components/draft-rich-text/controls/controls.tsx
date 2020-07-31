@@ -11,26 +11,46 @@ import {
   FormatListBulleted,
   FormatListNumbered,
   Undo,
-  Redo
+  Redo,
 } from '@material-ui/icons';
 
 import './controls.scss';
 
 const INLINE_STYLES = [
   { label: 'Bold', style: 'BOLD', icon: <FormatBoldIcon fontSize="small" /> },
-  { label: 'Italic', style: 'ITALIC', icon: <FormatItalicIcon fontSize="small" /> },
-  { label: 'Underline', style: 'UNDERLINE', icon: <FormatUnderlinedIcon fontSize="small" /> }
+  {
+    label: 'Italic',
+    style: 'ITALIC',
+    icon: <FormatItalicIcon fontSize="small" />,
+  },
+  {
+    label: 'Underline',
+    style: 'UNDERLINE',
+    icon: <FormatUnderlinedIcon fontSize="small" />,
+  },
 ];
 
 const BLOCK_TYPES = [
-  { label: 'Blockquote', style: 'blockquote', icon: <FormatQuote fontSize="small" /> },
-  { label: 'UL', style: 'unordered-list-item', icon: <FormatListBulleted fontSize="small" /> },
-  { label: 'OL', style: 'ordered-list-item', icon: <FormatListNumbered fontSize="small" /> }
+  {
+    label: 'Blockquote',
+    style: 'blockquote',
+    icon: <FormatQuote fontSize="small" />,
+  },
+  {
+    label: 'UL',
+    style: 'unordered-list-item',
+    icon: <FormatListBulleted fontSize="small" />,
+  },
+  {
+    label: 'OL',
+    style: 'ordered-list-item',
+    icon: <FormatListNumbered fontSize="small" />,
+  },
 ];
 
 export const InlineStyleControls = ({
   getActiveInlineStyles,
-  onToggle
+  onToggle,
 }: {
   getActiveInlineStyles(): string[];
   onToggle(style: string): void;
@@ -55,7 +75,7 @@ export const InlineStyleControls = ({
 
 export const BlockStyleControls = ({
   getActiveBlockType,
-  onToggle
+  onToggle,
 }: {
   getActiveBlockType(): string;
   onToggle(style: string): void;

@@ -11,7 +11,7 @@ import { detailedCards } from 'mock-data/cards/detailed-cards';
 import CoverImage from 'components/cover-image/cover-image';
 
 export default {
-  title: 'Cards/Material UI Card'
+  title: 'Cards/Material UI Card',
 };
 
 const card = detailedCards[0];
@@ -75,7 +75,13 @@ export const withRestictedImage = () => (
 );
 
 export const withRowLayout = () => (
-  <Card style={{ display: 'flex', flexDirection: 'row', width: text('card width', '400px') }}>
+  <Card
+    style={{
+      display: 'flex',
+      flexDirection: 'row',
+      width: text('card width', '400px'),
+    }}
+  >
     <div>
       <CardHeader
         avatar={<Avatar src={card.header.avatar.imageUrl} alt={card.header.avatar.altText} />}

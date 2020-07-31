@@ -8,7 +8,7 @@ import CardMedia from './card-media/card-media';
 
 export default {
   title: 'Cards/Custom Card',
-  component: Card
+  component: Card,
 };
 
 const card = detailedCards[0];

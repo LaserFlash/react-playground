@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import Board, { moveCard } from '@lourenci/react-kanban';
-import {
-  DefaultColumn, DefaultCard, BaseCard, BaseColumn
-} from './kanban-board.d';
+import { DefaultColumn, DefaultCard, BaseCard, BaseColumn } from './kanban-board.d';
 import './kanban-board.scss';
 
 interface Props<Card, Column> {
@@ -15,8 +13,8 @@ export const KanbanBoard = <
   Card extends BaseCard = DefaultCard,
   Column extends BaseColumn = DefaultColumn
 >(
-    props: Props<Card, Column>
-  ) => {
+  props: Props<Card, Column>
+) => {
   const [controlledBoard, setBoard] = useState(props.board);
   function handleCardMove(_card: Card, source: any, destination: any) {
     const updatedBoard = moveCard(controlledBoard, source, destination);
@@ -47,14 +45,16 @@ export const KanbanBoardBuilder = <
   Card extends BaseCard = DefaultCard,
   Column extends BaseColumn = DefaultColumn
 >(
-    props: BuilderProps<Card, Column, keyof Card>
-  ) => {
+  props: BuilderProps<Card, Column, keyof Card>
+) => {
   // build up board from columns and cards
   const board = {
     columns: props.columns.map((col) => ({
       ...col,
-      cards: props.cards.filter((card: Card) => (card[props.cardColumnIdKey] as unknown) === col.id)
-    }))
+      cards: props.cards.filter(
+        (card: Card) => (card[props.cardColumnIdKey] as unknown) === col.id
+      ),
+    })),
   };
 
   return (

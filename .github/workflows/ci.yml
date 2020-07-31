@@ -99,12 +99,15 @@ jobs:
         with:
           name: storybook
           path: storybook-static
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3.7.0-6
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@3.5.9
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: storybook-static
-          destination_dir: storybook
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: storybook-static
+          TARGET_FOLDER: storybook
+          CLEAN: true
+          CLEAN_EXCLUDE: '["site"]'
 
   deploy-site:
     runs-on: ubuntu-latest
@@ -117,9 +120,12 @@ jobs:
         with:
           name: demo-site
           path: dist
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3.7.0-6
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@3.5.9
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: dist
-          destination_dir: demo-site
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: dist
+          TARGET_FOLDER: site
+          CLEAN: true
+          CLEAN_EXCLUDE: '["storybook"]'

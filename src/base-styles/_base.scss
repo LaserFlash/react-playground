@@ -1,2 +1,31 @@
 // project base styles
+@import 'base-styles/variables';
 // body, typography, basic elements etcetera
+.form-group {
+  // error states
+  &.error {
+    position: relative;
+
+    .form-control,
+    div[class$='-control'] {
+      border-color: $form-error;
+    }
+
+    > input {
+      padding-left: 20px;
+    }
+
+    div[class$='-container'] ~ .svg-inline--fa {
+      right: 50px;
+    }
+
+    .error-icon, .error-icon > * {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      color: $form-error;
+      font-size: 24px;
+      padding-right: $spacer;
+    }
+  }
+}

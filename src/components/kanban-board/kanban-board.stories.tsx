@@ -8,7 +8,7 @@ import {
   CardMedia,
   Collapse,
   CardActions,
-  IconButton
+  IconButton,
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CoverImage from 'components/cover-image/cover-image';
@@ -20,7 +20,7 @@ const columns = [
   { id: '1', title: 'Backlog' },
   { id: '2', title: 'Acknowledged' },
   { id: '3', title: 'In Progress' },
-  { id: '4', title: 'Fixed' }
+  { id: '4', title: 'Fixed' },
 ];
 
 export default { title: 'KanbanBoard', component: KanbanBoard };
@@ -45,7 +45,12 @@ export const withCustomColumnHeader = () => (
 );
 
 export const withBasicCustomCards = () => (
-  <KanbanBoard<{ id: string; columnId: string; title: string; description: string }>
+  <KanbanBoard<{
+    id: string;
+    columnId: string;
+    title: string;
+    description: string;
+  }>
     columns={columns}
     cards={basicCards}
     cardColumnIdKey="columnId"
@@ -57,7 +62,7 @@ export const withBasicCustomCards = () => (
           borderStyle: 'solid',
           width: '400px',
           marginBottom: 6,
-          padding: 8
+          padding: 8,
         }}
       >
         <h2>{card.title}</h2>

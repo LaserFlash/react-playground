@@ -7,7 +7,7 @@ import {
   RawDraftContentState,
   ContentState,
   convertFromRaw,
-  convertToRaw
+  convertToRaw,
 } from 'draft-js';
 import Controls from './controls/controls';
 import './rich-text.scss';
@@ -30,11 +30,10 @@ const generateInitialData = (initialRaw?: RawDraftContentState | string) => {
 };
 
 export const RichTextEditor: React.FC<Props> = (props) => {
-  const {
-    initialRaw, onContentUpdate, placeholderText, isReadOnly
-  } = props;
+  const { initialRaw, onContentUpdate, placeholderText, isReadOnly } = props;
   const [editorState, setEditorState] = useState(generateInitialData(initialRaw));
-  const keepFocus = (): EditorState => EditorState.forceSelection(editorState, editorState.getSelection());
+  const keepFocus = (): EditorState =>
+    EditorState.forceSelection(editorState, editorState.getSelection());
 
   useEffect(() => {
     if (onContentUpdate) {
@@ -47,12 +46,18 @@ export const RichTextEditor: React.FC<Props> = (props) => {
       {!isReadOnly && (
         <Controls
           getActiveInlineStyles={() => editorState.getCurrentInlineStyle().toArray()}
-          getActiveBlockType={() => editorState
-            .getCurrentContent()
-            .getBlockForKey(editorState.getSelection().getStartKey())
-            .getType()}
-          toggleInlineStyle={(inlineStyle) => setEditorState(RichUtils.toggleInlineStyle(keepFocus(), inlineStyle))}
-          toggleBlockType={(blockType) => setEditorState(RichUtils.toggleBlockType(keepFocus(), blockType))}
+          getActiveBlockType={() =>
+            editorState
+              .getCurrentContent()
+              .getBlockForKey(editorState.getSelection().getStartKey())
+              .getType()
+          }
+          toggleInlineStyle={(inlineStyle) =>
+            setEditorState(RichUtils.toggleInlineStyle(keepFocus(), inlineStyle))
+          }
+          toggleBlockType={(blockType) =>
+            setEditorState(RichUtils.toggleBlockType(keepFocus(), blockType))
+          }
           undo={() => setEditorState(EditorState.undo(keepFocus()))}
           redo={() => setEditorState(EditorState.redo(keepFocus()))}
         />
