@@ -54,12 +54,12 @@ export const MultistepForm = <
           {props.renderStepper ? (
             props.renderStepper({
               activeStep,
-              steps: steps.map(({ props: p }) => ({ ...p.stepOptions } as StepOptions)),
+              steps: steps.map(({ props: p }) => p.stepOptions as StepOptions),
             })
           ) : (
             <Stepper
               activeStep={activeStep}
-              steps={steps.map(({ props: p }) => ({ ...p.stepOptions } as StepOptions))}
+              steps={steps.map(({ props: p }) => p.stepOptions as StepOptions)}
             />
           )}
           {step}

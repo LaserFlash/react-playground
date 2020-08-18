@@ -1,13 +1,14 @@
-import { addDecorator, addParameters } from '@storybook/react';
-import { withA11y } from '@storybook/addon-a11y';
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
-import './storybook.scss';
 
-addParameters({
+export const parameters = {
+  a11y: {
+    element: '#root',
+    config: {},
+    options: {},
+    manual: true,
+  },
   docs: {
     container: DocsContainer,
-    page: DocsPage
-  }
-});
-
-addDecorator(withA11y);
+    page: DocsPage,
+  },
+};

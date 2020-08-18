@@ -150,7 +150,7 @@ switch (env) {
         ],
       },
 
-      plugins: [new MiniCssExtractPlugin("bundle.css")],
+      plugins: [new MiniCssExtractPlugin()],
     });
     break;
   default:

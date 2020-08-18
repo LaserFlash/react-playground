@@ -94,7 +94,7 @@ export const customStepper = () => (
       onSubmit={action('Submit: Form')}
       renderStepper={(stepperProps) => (
         <Stepper activeStep={stepperProps.activeStep} alternativeLabel>
-          {stepperProps.steps.map(({ label, icon }) => (
+          {stepperProps.steps.map(({ label, icon } = {}) => (
             <Step key={label}>
               <StepLabel StepIconComponent={icon as any}>{label}</StepLabel>
             </Step>
