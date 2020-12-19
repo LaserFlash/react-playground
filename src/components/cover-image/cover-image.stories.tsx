@@ -1,5 +1,5 @@
 import React from 'react';
-import { text } from '@storybook/addon-knobs';
+import { Story } from '@storybook/react';
 import { detailedCards } from 'mock-data/cards/detailed-cards';
 import CoverImage from './cover-image';
 
@@ -10,9 +10,15 @@ export default {
 
 const { image } = detailedCards[0];
 
-export const withNoSizeRestriction = () => <CoverImage image={image} />;
-export const withSizeRestriction = () => (
-  <div style={{ height: text('height', '400px'), width: text('width', '200px') }}>
+export const withNoSizeRestriction: Story = () => <CoverImage image={image} />;
+const SizeRestriction: Story<{ height: number; width: number }> = ({ height, width }) => (
+  <div style={{ height: `${height}px`, width: `${width}px` }}>
     <CoverImage image={image} />
   </div>
 );
+
+export const withSizeRestriction = SizeRestriction.bind({});
+withSizeRestriction.args = {
+  width: 800,
+  height: 800,
+};

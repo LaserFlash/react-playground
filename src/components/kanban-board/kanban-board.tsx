@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import Board, { moveCard } from '@lourenci/react-kanban';
 import { DefaultColumn, DefaultCard, BaseCard, BaseColumn } from './kanban-board.d';
 import './kanban-board.scss';
 
 interface Props<Card, Column> {
-  board: { columns: any[] };
+  board: { columns: Column[] };
   cardRenderer?(card: Card): React.ReactChild;
   columnHeaderRenderer?(col: Column): React.ReactChild;
 }
@@ -14,7 +14,7 @@ export const KanbanBoard = <
   Column extends BaseColumn = DefaultColumn
 >(
   props: Props<Card, Column>
-) => {
+): ReactElement => {
   const [controlledBoard, setBoard] = useState(props.board);
   function handleCardMove(_card: Card, source: any, destination: any) {
     const updatedBoard = moveCard(controlledBoard, source, destination);
@@ -22,12 +22,7 @@ export const KanbanBoard = <
   }
 
   return (
-    <Board
-      onCardDragEnd={handleCardMove}
-      disableColumnDrag
-      renderCard={props.cardRenderer}
-      renderColumnHeader={props.columnHeaderRenderer}
-    >
+    <Board onCardDragEnd={handleCardMove} disableColumnDrag {...props}>
       {controlledBoard}
     </Board>
   );
@@ -46,7 +41,7 @@ export const KanbanBoardBuilder = <
   Column extends BaseColumn = DefaultColumn
 >(
   props: BuilderProps<Card, Column, keyof Card>
-) => {
+): ReactElement => {
   // build up board from columns and cards
   const board = {
     columns: props.columns.map((col) => ({

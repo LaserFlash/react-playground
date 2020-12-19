@@ -1,5 +1,5 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
+import { Story } from '@storybook/react';
 import * as Yup from 'yup';
 import Stepper from '@material-ui/core/Stepper';
 import TextField from 'components/form/text-field/text-field';
@@ -10,9 +10,22 @@ import FormStep from './form-step';
 
 export default {
   title: 'Formik Forms',
+  argTypes: {
+    onSubmit: {
+      action: 'Submit: Form',
+    },
+    onSubmitStep: {
+      action: 'Submit: Step',
+    },
+  },
 };
 
-export const basicMultiStep = () => (
+type Args = {
+  onSubmit(): void;
+  onSubmitStep(): void;
+};
+
+export const basicMultiStep: Story<Args> = ({ onSubmit, onSubmitStep }) => (
   <div>
     <h1>Formik Multistep Wizard</h1>
     <MultistepForm
@@ -21,10 +34,10 @@ export const basicMultiStep = () => (
         firstName: '',
         lastName: '',
       }}
-      onSubmit={action('Submit: Form')}
+      onSubmit={onSubmit}
     >
       <FormStep
-        onSubmit={action('Submit: Step 1')}
+        onSubmit={onSubmitStep}
         validationSchema={Yup.object({
           firstName: Yup.string().required('Required'),
           lastName: Yup.string().required('Required'),
@@ -50,7 +63,7 @@ export const basicMultiStep = () => (
         />
       </FormStep>
       <FormStep
-        onSubmit={action('Submit: Step 2')}
+        onSubmit={onSubmitStep}
         validationSchema={Yup.object({
           email: Yup.string().email('Invalid email address').required('Required'),
         })}
@@ -81,7 +94,7 @@ interface StepOptions {
   label?: string;
 }
 
-export const customStepper = () => (
+export const customStepper: Story<Args> = ({ onSubmit, onSubmitStep }) => (
   <div>
     <h1>Formik Multistep Wizard</h1>
     <MultistepForm<FormValues, StepOptions>
@@ -91,7 +104,7 @@ export const customStepper = () => (
         email: '',
         city: '',
       }}
-      onSubmit={action('Submit: Form')}
+      onSubmit={onSubmit}
       renderStepper={(stepperProps) => (
         <Stepper activeStep={stepperProps.activeStep} alternativeLabel>
           {stepperProps.steps.map(({ label, icon } = {}) => (
@@ -103,7 +116,7 @@ export const customStepper = () => (
       )}
     >
       <FormStep<FormValues, StepOptions>
-        onSubmit={action('Submit: Step 1')}
+        onSubmit={onSubmitStep}
         validationSchema={Yup.object({
           firstName: Yup.string().required('Required'),
           lastName: Yup.string().required('Required'),
@@ -129,7 +142,7 @@ export const customStepper = () => (
         />
       </FormStep>
       <FormStep<FormValues, StepOptions>
-        onSubmit={action('Submit: Step 2')}
+        onSubmit={onSubmitStep}
         stepOptions={{ icon: FormatUnderlinedIcon }}
       >
         <TextField
@@ -143,7 +156,7 @@ export const customStepper = () => (
         />
       </FormStep>
       <FormStep<FormValues, StepOptions>
-        onSubmit={action('Submit: Step 2')}
+        onSubmit={onSubmitStep}
         validationSchema={Yup.object({
           city: Yup.string().required('Required'),
         })}

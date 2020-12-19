@@ -1,5 +1,5 @@
 import React from 'react';
-import { text } from '@storybook/addon-knobs';
+import { Story } from '@storybook/react';
 import { detailedCards } from 'mock-data/cards/detailed-cards';
 import Card from './card';
 import CardHeader from './card-header/card-header';
@@ -9,12 +9,15 @@ import CardMedia from './card-media/card-media';
 export default {
   title: 'Cards/Custom Card',
   component: Card,
+  args: {
+    width: 400,
+  },
 };
 
 const card = detailedCards[0];
-
-export const withImageFirst = () => (
-  <Card style={{ width: text('card width', '400px') }}>
+type Args = { width: number };
+export const withImageFirst: Story<Args> = ({ width }) => (
+  <Card style={{ width: `${width}px` }}>
     <CardMedia image={card.image} />
     <CardHeader
       avatar={card.header.avatar}
@@ -25,8 +28,8 @@ export const withImageFirst = () => (
   </Card>
 );
 
-export const withImageMiddle = () => (
-  <Card style={{ width: text('card width', '400px') }}>
+export const withImageMiddle: Story<Args> = ({ width }) => (
+  <Card style={{ width: `${width}px` }}>
     <CardHeader
       avatar={card.header.avatar}
       title={card.header.heading}
@@ -37,8 +40,8 @@ export const withImageMiddle = () => (
   </Card>
 );
 
-export const withImageLast = () => (
-  <Card style={{ width: text('card width', '400px') }}>
+export const withImageLast: Story<Args> = ({ width }) => (
+  <Card style={{ width: `${width}px` }}>
     <CardHeader
       avatar={card.header.avatar}
       title={card.header.heading}

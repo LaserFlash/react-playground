@@ -6,12 +6,10 @@ interface Props {
   steps: Array<any>;
 }
 
-export const Stepper: React.FC<Props> = (props) => {
-  return (
-    <div className="stepper">
-      Step: {props.activeStep + 1} of {props.steps.length}
-    </div>
-  );
-};
+export const Stepper: React.FC<Props> = (props) => (
+  <div className="stepper">
+    Step: {props.activeStep + 1} of {props.steps.length}
+  </div>
+);
 
 export default Stepper;

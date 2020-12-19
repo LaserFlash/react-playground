@@ -1,5 +1,5 @@
 import React from 'react';
-import { text, number } from '@storybook/addon-knobs';
+import { Story } from '@storybook/react';
 import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -12,12 +12,16 @@ import CoverImage from 'components/cover-image/cover-image';
 
 export default {
   title: 'Cards/Material UI Card',
+  args: {
+    width: 400,
+  },
 };
 
+type Args = { width: number };
 const card = detailedCards[0];
 
-export const withImageFirst = () => (
-  <Card style={{ width: text('card width', '400px') }}>
+export const withImageFirst: Story<Args> = ({ width }) => (
+  <Card style={{ width: `${width}px` }}>
     <CardMedia component="img" image={card.image.imageUrl} title={card.image.altText} />
     <CardHeader
       avatar={<Avatar src={card.header.avatar.imageUrl} alt={card.header.avatar.altText} />}
@@ -36,8 +40,8 @@ export const withImageFirst = () => (
   </Card>
 );
 
-export const withImageMiddle = () => (
-  <Card style={{ width: text('card width', '400px') }}>
+export const withImageMiddle: Story<Args> = ({ width }) => (
+  <Card style={{ width: `${width}px` }}>
     <CardHeader
       avatar={<Avatar src={card.header.avatar.imageUrl} alt={card.header.avatar.altText} />}
       title={card.header.heading}
@@ -48,8 +52,8 @@ export const withImageMiddle = () => (
   </Card>
 );
 
-export const withImageLast = () => (
-  <Card style={{ width: text('card width', '400px') }}>
+export const withImageLast: Story<Args> = ({ width }) => (
+  <Card style={{ width: `${width}px` }}>
     <CardHeader
       avatar={<Avatar src={card.header.avatar.imageUrl} alt={card.header.avatar.altText} />}
       title={card.header.heading}
@@ -60,26 +64,26 @@ export const withImageLast = () => (
   </Card>
 );
 
-export const withRestictedImage = () => (
-  <Card style={{ width: text('card width', '400px') }}>
+export const withRestrictedImage: Story<Args> = ({ width }) => (
+  <Card style={{ width: `${width}px` }}>
     <CardHeader
       avatar={<Avatar src={card.header.avatar.imageUrl} alt={card.header.avatar.altText} />}
       title={card.header.heading}
       subheader={card.header.subHeading}
     />
     <CardContent>{card.content}</CardContent>
-    <CardMedia style={{ height: number('height', 100) }}>
+    <CardMedia style={{ height: 100 }}>
       <CoverImage image={card.image} />
     </CardMedia>
   </Card>
 );
 
-export const withRowLayout = () => (
+export const withRowLayout: Story<Args> = ({ width }) => (
   <Card
     style={{
       display: 'flex',
       flexDirection: 'row',
-      width: text('card width', '400px'),
+      width: `${width}px`,
     }}
   >
     <div>

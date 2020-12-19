@@ -1,22 +1,23 @@
 import React from 'react';
-import { text } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
+import { Story } from '@storybook/react';
 import exampleContent from 'mock-data/rich-text/rich-text';
 import RichTextEditor from './rich-text';
 
-export default { title: 'RichTextEditor/Draft', component: RichTextEditor };
+export default {
+  title: 'RichTextEditor/Draft',
+  component: RichTextEditor,
+  argTypes: {
+    placeholderText: { control: 'text' },
+    isReadOnly: { control: 'boolean' },
+    onContentUpdate: { action: 'Content Update' },
+  },
+  args: { placeholderText: 'Type Here...', isReadOnly: false },
+};
 
-export const basicEditor = () => <RichTextEditor onContentUpdate={action('Content Update')} />;
-export const withPlacholderText = () => (
-  <RichTextEditor
-    placeholderText={text('placeholder', 'Any placeholder text can go here ...')}
-    onContentUpdate={action('Content Update')}
-  />
+export const basicEditor: Story = (args) => <RichTextEditor {...args} />;
+export const withInitialContent: Story = (args) => (
+  <RichTextEditor initialRaw={exampleContent} {...args} />
 );
-export const withInitialContent = () => (
-  <RichTextEditor initialRaw={exampleContent} onContentUpdate={action('Content Update')} />
+export const withStringInitialContent: Story = (args) => (
+  <RichTextEditor initialRaw="a basic string starter" {...args} />
 );
-export const withStringInitialContent = () => (
-  <RichTextEditor initialRaw="a basic string starter" onContentUpdate={action('Content Update')} />
-);
-export const isReadOnlyEditor = () => <RichTextEditor initialRaw={exampleContent} isReadOnly />;

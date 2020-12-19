@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Story } from '@storybook/react';
 import { basicCards } from 'mock-data/cards/basic-card';
 import {
   Card,
@@ -25,13 +26,13 @@ const columns = [
 
 export default { title: 'KanbanBoard', component: KanbanBoard };
 
-export const withCards = () => (
+export const withCards: Story = () => (
   <KanbanBoard columns={columns} cards={basicCards} cardColumnIdKey="columnId" />
 );
-export const withoutCards = () => (
+export const withoutCards: Story = () => (
   <KanbanBoard columns={columns} cards={[]} cardColumnIdKey="columnId" />
 );
-export const withCustomColumnHeader = () => (
+export const withCustomColumnHeader: Story = () => (
   <KanbanBoard
     columns={columns}
     cards={basicCards}
@@ -44,7 +45,7 @@ export const withCustomColumnHeader = () => (
   />
 );
 
-export const withBasicCustomCards = () => (
+export const withBasicCustomCards: Story = () => (
   <KanbanBoard<{
     id: string;
     columnId: string;
@@ -72,7 +73,7 @@ export const withBasicCustomCards = () => (
   />
 );
 
-export const withAdvancedCustomCards = () => (
+export const withAdvancedCustomCards: Story = () => (
   <KanbanBoard<{
     id: string;
     stage: string;

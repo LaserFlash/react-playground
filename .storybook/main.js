@@ -8,12 +8,9 @@ module.exports = {
     },
   },
   addons: [
-    '@storybook/addon-actions',
+    '@storybook/addon-essentials',
     '@storybook/addon-links',
-    '@storybook/addon-knobs',
-    '@storybook/addon-docs',
     '@storybook/addon-storysource',
-    '@storybook/addon-viewport',
     '@storybook/addon-a11y',
   ],
   webpackFinal: async (config) => config,

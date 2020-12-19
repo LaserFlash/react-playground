@@ -1,16 +1,20 @@
 import React from 'react';
-import { text } from '@storybook/addon-knobs';
+import { Story } from '@storybook/react';
 import { detailedCards } from 'mock-data/cards/detailed-cards';
 import Card from 'react-bootstrap/Card';
 
 export default {
   title: 'Cards/Bootstrap Card',
+  component: Card,
+  args: {
+    width: 400,
+  },
 };
 
 const card = detailedCards[0];
-
-export const withImageFirst = () => (
-  <Card style={{ width: text('card width', '400px') }}>
+type Args = { width: number };
+export const withImageFirst: Story<Args> = ({ width }) => (
+  <Card style={{ width: `${width}px` }}>
     <Card.Img variant="top" src={card.image.imageUrl} alt={card.image.altText} />
     <Card.Header style={{ display: 'flex', flexDirection: 'column' }}>
       <Card.Title>{card.header.heading}</Card.Title>
@@ -20,8 +24,8 @@ export const withImageFirst = () => (
   </Card>
 );
 
-export const withImageMiddle = () => (
-  <Card style={{ width: text('card width', '400px') }}>
+export const withImageMiddle: Story<Args> = ({ width }) => (
+  <Card style={{ width: `${width}px` }}>
     <Card.Header style={{ display: 'flex', flexDirection: 'column' }}>
       <Card.Title>{card.header.heading}</Card.Title>
       <Card.Subtitle>{card.header.subHeading}</Card.Subtitle>
@@ -31,8 +35,8 @@ export const withImageMiddle = () => (
   </Card>
 );
 
-export const withImageLast = () => (
-  <Card style={{ width: text('card width', '400px') }}>
+export const withImageLast: Story<Args> = ({ width }) => (
+  <Card style={{ width: `${width}px` }}>
     <Card.Header style={{ display: 'flex', flexDirection: 'column' }}>
       <Card.Title>{card.header.heading}</Card.Title>
       <Card.Subtitle>{card.header.subHeading}</Card.Subtitle>

@@ -50,6 +50,7 @@
     "max-len": ["warn", { "code": 100, "ignoreComments": true }],
     "quotes": ["warn", "single", { "allowTemplateLiterals": true }],
     "import/no-unresolved": 0,
+    "react/require-default-props": 0,
     "react/destructuring-assignment": 0,
     "react/jsx-filename-extension": [
       1,
@@ -58,7 +59,6 @@
     "react/jsx-wrap-multilines": 0,
     "react/jsx-props-no-spreading": 0,
     "react/prop-types": 0,
-    "react/require-default-props": 0,
     "react/jsx-no-bind": [
       "error",
       {
@@ -76,7 +76,9 @@
           "some": ["nesting", "id"]
         }
       }
-    ]
+    ],
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"]
   },
   "overrides": [
     {
