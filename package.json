@@ -15,7 +15,7 @@
     "storybook": "start-storybook -p 6006",
     "stylelint": "stylelint 'src/**/*.{scss,css}'",
     "stylelint:fix": "stylelint 'src/**/*.{scss,css}' --fix",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook --quiet"
   },
   "license": "UNLICENSED",
   "private": true,

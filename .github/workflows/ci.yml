@@ -38,7 +38,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    needs: [install, lint]
+    needs: install
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -90,7 +90,7 @@ jobs:
 
   deploy-storybook:
     runs-on: ubuntu-latest
-    needs: [install, lint, test, build-storybook]
+    needs:  build-storybook
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -111,7 +111,7 @@ jobs:
 
   deploy-site:
     runs-on: ubuntu-latest
-    needs: [install, lint, test, build-site]
+    needs: build-site
     steps:
       - name: Checkout
         uses: actions/checkout@v2
