@@ -12,8 +12,7 @@ let config = {};
 
 // config that is shared between all types of build (dev and prod)
 const common = {
-  entry: ["@babel/polyfill", "whatwg-fetch", "./src/index.tsx"],
-
+  entry: ["react-hot-loader/patch","@babel/polyfill", "whatwg-fetch", "./src/index.tsx"],
   output: {
     path: path.resolve(__dirname, "dist"),
     publicPath: "/",
@@ -72,6 +71,9 @@ const common = {
   resolve: {
     extensions: [".js", ".ts", ".jsx", ".tsx", ".json", ".scss"],
     modules: [path.resolve(__dirname, "src"), "node_modules"],
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
+    },
   },
 };
 

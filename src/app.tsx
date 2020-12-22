@@ -5,10 +5,15 @@ import React from 'react';
 // this setup needs to be done in a separate file from index.jsx to enable hot reloads
 
 const App = () => (
-  <p>
-    Hello world!
-    {/* replace me with your routes/layouts/top level components */}
-  </p>
+  <>
+    <p>Hello world!</p>
+    <p>Hello world!</p>
+    <p>Hello world!</p>
+    <p>Hello world!</p>
+    <p>Hello world!</p>
+    <p>Hello world!</p>
+    <p>Hello world!</p>
+  </>
 );
 
 export default App;
