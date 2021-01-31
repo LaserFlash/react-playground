@@ -1,5 +1,7 @@
-import { hot } from 'react-hot-loader/root';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import App from 'app';
 import 'index.scss';
 
-export default hot(App);
+const rootElement = document.getElementById('app');
+ReactDOM.render(<App />, rootElement);

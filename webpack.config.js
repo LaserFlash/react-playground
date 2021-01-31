@@ -12,7 +12,7 @@ let config = {};
 
 // config that is shared between all types of build (dev and prod)
 const common = {
-  entry: ["react-hot-loader/patch","@babel/polyfill", "whatwg-fetch", "./src/index.tsx"],
+  entry: ["@babel/polyfill", "whatwg-fetch", "./src/index.tsx"],
   output: {
     path: path.resolve(__dirname, "dist"),
     publicPath: "/",
@@ -38,7 +38,6 @@ const common = {
         exclude: /node_modules/,
         loader: "babel-loader", // config in .tsconfig
       },
-
       {
         test: /\.(png|svg|jpg|gif|woff|woff2|eot|ttf)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         exclude: /node_modules/,
@@ -71,9 +70,6 @@ const common = {
   resolve: {
     extensions: [".js", ".ts", ".jsx", ".tsx", ".json", ".scss"],
     modules: [path.resolve(__dirname, "src"), "node_modules"],
-    alias: {
-      'react-dom': '@hot-loader/react-dom',
-    },
   },
 };
 
