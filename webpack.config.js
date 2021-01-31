@@ -15,7 +15,7 @@ const common = {
   entry: ["@babel/polyfill", "whatwg-fetch", "./src/index.tsx"],
   output: {
     path: path.resolve(__dirname, "dist"),
-    publicPath: "/",
+    publicPath: "/site",
     filename: "bundle.js",
   },
 
@@ -36,7 +36,7 @@ const common = {
       {
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
-        loader: "babel-loader", // config in .tsconfig
+        loader: "babel-loader", // config in .tsconfig      
       },
       {
         test: /\.(png|svg|jpg|gif|woff|woff2|eot|ttf)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -122,7 +122,6 @@ switch (env) {
     // but we want to only use MiniCssExtractPlugin for prod, not dev
     config = merge(common, {
       devtool: "source-map",
-
       module: {
         rules: [
           {
