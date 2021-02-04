@@ -1,3 +1,8 @@
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const StyleLintPlugin = require("stylelint-webpack-plugin");
+const webpack = require("webpack");
+const path = require("path");
 const custom = require('../webpack.config.js');
 
 module.exports = async ({ config, mode }) => ({
@@ -13,7 +18,6 @@ module.exports = async ({ config, mode }) => ({
       },
     ],
   },
-  plugins: [...config.plugins, ...custom.plugins],
   resolve: {
     ...config.resolve,
     ...custom.resolve,
