@@ -72,7 +72,7 @@ const common = {
       files: '**/*.s?(a|c)ss',
     }),
     devMode && new ReactRefreshWebpackPlugin(),
-  ],
+  ].filter(Boolean),
 
   resolve: {
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.json', '.scss'],
