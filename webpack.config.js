@@ -1,50 +1,56 @@
-const webpack = require("webpack");
-const path = require("path");
-const autoprefixer = require("autoprefixer");
-const flexfixes = require("postcss-flexbugs-fixes");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const StyleLintPlugin = require("stylelint-webpack-plugin");
-const { merge } = require("webpack-merge");
+const webpack = require('webpack');
+const path = require('path');
+const autoprefixer = require('autoprefixer');
+const flexfixes = require('postcss-flexbugs-fixes');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const { merge } = require('webpack-merge');
 
-const env = process.env.npm_lifecycle_event === "build" ? "prod" : "dev";
+const env = process.env.npm_lifecycle_event === 'build' ? 'production' : 'dev';
+const devMode = env !== 'production';
+
 let config = {};
 
 // config that is shared between all types of build (dev and prod)
 const common = {
-  entry: ["@babel/polyfill", "whatwg-fetch", "./src/index.tsx"],
+  entry: ['@babel/polyfill', 'whatwg-fetch', './src/index.tsx'],
   output: {
-    path: path.resolve(__dirname, "dist"),
-    publicPath: "/site",
-    filename: "bundle.js",
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/site',
+    filename: 'bundle.js',
   },
 
   module: {
     rules: [
       {
-        enforce: "pre", // lint files before they are transformed, config in .eslintrc.json
+        enforce: 'pre', // lint files before they are transformed, config in .eslintrc.json
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
         loader: [
           {
-            loader: "prettier-loader",
-            options: { parser: "typescript" },
+            loader: 'prettier-loader',
+            options: { parser: 'typescript' },
           },
-          "eslint-loader",
+          'eslint-loader',
         ],
       },
       {
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
-        loader: "babel-loader", // config in .tsconfig      
+        loader: 'babel-loader', // config in .tsconfig
+        options: {
+          plugins: [devMode && require.resolve('react-refresh/babel')].filter(Boolean),
+        },
       },
       {
         test: /\.(png|svg|jpg|gif|woff|woff2|eot|ttf)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         exclude: /node_modules/,
-        loader: "url-loader",
+        loader: 'url-loader',
         options: {
           limit: 1024, // will insert a data URI if filesize < 1kb otherwise uses file-loader
-          fallback: "file-loader",
+          fallback: 'file-loader',
         },
       },
     ],
@@ -52,32 +58,33 @@ const common = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
+      template: './src/index.html',
       hash: true,
     }),
     new webpack.DefinePlugin({
-      "process.env": { NODE_ENV: JSON.stringify(env) },
+      'process.env': { NODE_ENV: JSON.stringify(env) },
     }),
     new webpack.ProvidePlugin({
-      Promise: ["es6-promise", "Promise"],
+      Promise: ['es6-promise', 'Promise'],
     }),
     new StyleLintPlugin({
-      context: path.resolve(__dirname, "src"),
-      files: "**/*.s?(a|c)ss",
+      context: path.resolve(__dirname, 'src'),
+      files: '**/*.s?(a|c)ss',
     }),
+    devMode && new ReactRefreshWebpackPlugin(),
   ],
 
   resolve: {
-    extensions: [".js", ".ts", ".jsx", ".tsx", ".json", ".scss"],
-    modules: [path.resolve(__dirname, "src"), "node_modules"],
+    extensions: ['.js', '.ts', '.jsx', '.tsx', '.json', '.scss'],
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
   },
 };
 
 // environment specific config
 switch (env) {
-  case "dev":
+  case 'dev':
     config = merge(common, {
-      devtool: "cheap-module-eval-source-map",
+      devtool: 'cheap-module-eval-source-map',
 
       devServer: {
         historyApiFallback: true, // enables reloads of routed pages
@@ -93,21 +100,21 @@ switch (env) {
             test: /\.scss$/,
             exclude: /node_modules/,
             use: [
-              "style-loader",
-              "css-loader",
+              'style-loader',
+              'css-loader',
               {
-                loader: "postcss-loader",
+                loader: 'postcss-loader',
                 options: {
                   postcssOptions: {
                     plugins: [autoprefixer(), flexfixes()],
-                  }
+                  },
                 },
               },
               {
-                loader: "sass-loader",
+                loader: 'sass-loader',
                 options: {
                   sassOptions: {
-                    includePaths: [path.resolve(__dirname, "src")],
+                    includePaths: [path.resolve(__dirname, 'src')],
                   },
                 },
               },
@@ -117,11 +124,11 @@ switch (env) {
       },
     });
     break;
-  case "prod":
+  case 'production':
     // most of the prod specific config is provided directly by webpack as we supplied the -p flag
     // but we want to only use MiniCssExtractPlugin for prod, not dev
     config = merge(common, {
-      devtool: "source-map",
+      devtool: 'source-map',
       module: {
         rules: [
           {
@@ -129,20 +136,20 @@ switch (env) {
             exclude: /node_modules/,
             use: [
               MiniCssExtractPlugin.loader,
-              "css-loader",
+              'css-loader',
               {
-                loader: "postcss-loader",
+                loader: 'postcss-loader',
                 options: {
                   postcssOptions: {
                     plugins: [autoprefixer(), flexfixes()],
-                  }
+                  },
                 },
               },
               {
-                loader: "sass-loader",
+                loader: 'sass-loader',
                 options: {
                   sassOptions: {
-                    includePaths: [path.resolve(__dirname, "src")],
+                    includePaths: [path.resolve(__dirname, 'src')],
                   },
                 },
               },
