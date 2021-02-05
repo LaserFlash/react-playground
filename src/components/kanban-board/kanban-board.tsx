@@ -5,8 +5,8 @@ import './kanban-board.scss';
 
 interface Props<Card, Column> {
   board: { columns: Column[] };
-  cardRenderer?(card: Card): React.ReactChild;
-  columnHeaderRenderer?(col: Column): React.ReactChild;
+  renderCard?(card: Card): React.ReactChild;
+  renderColumnHeader?(col: Column): React.ReactChild;
 }
 
 export const KanbanBoard = <
@@ -36,8 +36,8 @@ interface BuilderProps<Card, Column, K> {
   columns: Column[];
   cards: Card[];
   cardColumnIdKey: K;
-  cardRenderer?(card: Card): React.ReactChild;
-  columnHeaderRenderer?(col: Column): React.ReactChild;
+  renderCard?(card: Card): React.ReactChild;
+  renderColumnHeader?(col: Column): React.ReactChild;
 }
 
 export const KanbanBoardBuilder = <
@@ -59,8 +59,8 @@ export const KanbanBoardBuilder = <
   return (
     <KanbanBoard
       board={board}
-      cardRenderer={props.cardRenderer}
-      columnHeaderRenderer={props.columnHeaderRenderer}
+      renderCard={props.renderCard}
+      renderColumnHeader={props.renderColumnHeader}
     />
   );
 };

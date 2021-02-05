@@ -24,7 +24,7 @@ const columns = [
   { id: '4', title: 'Fixed' },
 ];
 
-export default { title: 'KanbanBoard', component: KanbanBoard };
+export default { title: 'KanbanBoard/KanbanBoard', component: KanbanBoard };
 
 export const withCards: Story = () => (
   <KanbanBoard columns={columns} cards={basicCards} cardColumnIdKey="columnId" />
@@ -37,7 +37,7 @@ export const withCustomColumnHeader: Story = () => (
     columns={columns}
     cards={basicCards}
     cardColumnIdKey="columnId"
-    columnHeaderRenderer={(col) => (
+    renderColumnHeader={(col) => (
       <div style={{ color: 'blue' }}>
         <h1>{col.title}</h1>
       </div>
@@ -55,7 +55,7 @@ export const withBasicCustomCards: Story = () => (
     columns={columns}
     cards={basicCards}
     cardColumnIdKey="columnId"
-    cardRenderer={(card) => (
+    renderCard={(card) => (
       <div
         style={{
           borderRadius: 8,
@@ -84,7 +84,7 @@ export const withAdvancedCustomCards: Story = () => (
     columns={columns}
     cards={detailedCards}
     cardColumnIdKey="stage"
-    cardRenderer={(card) => {
+    renderCard={(card) => {
       const [expanded, setExpanded] = useState(false);
       return (
         <Card style={{ width: 300 }}>
