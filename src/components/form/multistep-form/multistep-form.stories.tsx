@@ -109,13 +109,13 @@ export const customStepper: Story<Args> = ({ onSubmit, onSubmitStep }) => (
         <Stepper activeStep={stepperProps.activeStep} alternativeLabel>
           {stepperProps.steps.map(({ label, icon } = {}) => (
             <Step key={label}>
-              <StepLabel StepIconComponent={icon as any}>{label}</StepLabel>
+              <StepLabel StepIconComponent={icon}>{label}</StepLabel>
             </Step>
           ))}
         </Stepper>
       )}
     >
-      <FormStep<FormValues, StepOptions>
+      <FormStep
         onSubmit={onSubmitStep}
         validationSchema={Yup.object({
           firstName: Yup.string().required('Required'),
@@ -141,10 +141,7 @@ export const customStepper: Story<Args> = ({ onSubmit, onSubmitStep }) => (
           }}
         />
       </FormStep>
-      <FormStep<FormValues, StepOptions>
-        onSubmit={onSubmitStep}
-        stepOptions={{ icon: FormatUnderlinedIcon }}
-      >
+      <FormStep onSubmit={onSubmitStep} stepOptions={{ icon: FormatUnderlinedIcon }}>
         <TextField
           label="Email"
           name="email"
@@ -155,7 +152,7 @@ export const customStepper: Story<Args> = ({ onSubmit, onSubmitStep }) => (
           }}
         />
       </FormStep>
-      <FormStep<FormValues, StepOptions>
+      <FormStep
         onSubmit={onSubmitStep}
         validationSchema={Yup.object({
           city: Yup.string().required('Required'),

@@ -3,7 +3,7 @@ import './stepper.scss';
 
 interface Props {
   activeStep: number;
-  steps: Array<any>;
+  steps: unknown[];
 }
 
 export const Stepper: React.FC<Props> = (props) => (

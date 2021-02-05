@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { Formik, FormikValues, Form, FormikHelpers } from 'formik';
 import { Props as FormStep } from './form-step';
 import Stepper from './stepper/stepper';
@@ -20,7 +20,7 @@ export const MultistepForm = <
   StepOptions extends unknown = undefined
 >(
   props: Props<FormValues, StepOptions>
-) => {
+): ReactElement => {
   const [activeStep, setActiveStep] = useState(0);
   const steps = React.Children.toArray(props.children) as React.ReactElement<
     FormStep<FormValues, StepOptions>

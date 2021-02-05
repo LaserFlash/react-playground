@@ -16,6 +16,7 @@ export default {
 
 const card = detailedCards[0];
 type Args = { width: number };
+
 export const withImageFirst: Story<Args> = ({ width }) => (
   <Card style={{ width: `${width}px` }}>
     <CardMedia image={card.image} />

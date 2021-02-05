@@ -1,6 +1,6 @@
 import React from 'react';
-import { Story } from '@storybook/react';
 import exampleContent from 'mock-data/rich-text/rich-text';
+import { Story } from '@storybook/react';
 import RichTextEditor from './rich-text';
 
 export default {

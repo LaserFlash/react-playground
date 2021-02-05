@@ -16,10 +16,14 @@ export const KanbanBoard = <
   props: Props<Card, Column>
 ): ReactElement => {
   const [controlledBoard, setBoard] = useState(props.board);
-  function handleCardMove(_card: Card, source: any, destination: any) {
+  const handleCardMove = (
+    _card: Card,
+    source: { fromColumnId: string; fromPosition: string },
+    destination: { toColumnId: string; toPosition: string }
+  ) => {
     const updatedBoard = moveCard(controlledBoard, source, destination);
     setBoard(updatedBoard);
-  }
+  };
 
   return (
     <Board onCardDragEnd={handleCardMove} disableColumnDrag {...props}>

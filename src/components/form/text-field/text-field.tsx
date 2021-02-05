@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Field, ErrorMessage, getIn, FieldProps } from 'formik';
 import classnames from 'classnames';
 import ErrorNotice from 'components/form/error-message/error-message';
@@ -50,4 +50,4 @@ const InnerTextField = (props: Props & FieldProps) => {
   );
 };
 
-export default (props: Props) => <Field component={InnerTextField} {...props} />;
+export default (props: Props): ReactElement => <Field component={InnerTextField} {...props} />;

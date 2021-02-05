@@ -48,13 +48,10 @@ const BLOCK_TYPES = [
   },
 ];
 
-export const InlineStyleControls = ({
-  getActiveInlineStyles,
-  onToggle,
-}: {
+export const InlineStyleControls: React.FC<{
   getActiveInlineStyles(): string[];
   onToggle(style: string): void;
-}) => (
+}> = ({ getActiveInlineStyles, onToggle }) => (
   <div className="inline-controls control-block">
     <ToggleButtonGroup aria-label="inline text formating">
       {INLINE_STYLES.map((type) => (
@@ -73,13 +70,10 @@ export const InlineStyleControls = ({
   </div>
 );
 
-export const BlockStyleControls = ({
-  getActiveBlockType,
-  onToggle,
-}: {
+export const BlockStyleControls: React.FC<{
   getActiveBlockType(): string;
   onToggle(style: string): void;
-}) => (
+}> = ({ getActiveBlockType, onToggle }) => (
   <div className="block-controls control-block">
     <ToggleButtonGroup exclusive aria-label="block text formating">
       {BLOCK_TYPES.map((type) => (
