@@ -4,7 +4,7 @@ import { detailedCards } from 'mock-data/cards/detailed-cards';
 import CoverImage from './cover-image';
 
 export default {
-  title: 'Cover Image',
+  title: 'Image/Cover Image',
   component: CoverImage,
 };
 

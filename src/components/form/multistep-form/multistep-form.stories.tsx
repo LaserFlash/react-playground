@@ -9,7 +9,7 @@ import MultistepForm from './multistep-form';
 import FormStep from './form-step';
 
 export default {
-  title: 'Formik Forms',
+  title: 'Forms/Formik Forms',
   argTypes: {
     onSubmit: {
       action: 'Submit: Form',
