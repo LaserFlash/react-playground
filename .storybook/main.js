@@ -1,7 +1,11 @@
 module.exports = {
   stories: ['../src/**/*.stories.tsx'],
+  reactOptions: {
+    fastRefresh: true,
+    strictMode: true,
+  },
   typescript: {
-    check: false,
+    check: true,
     reactDocgen: 'react-docgen-typescript',
     reactDocgenTypescriptOptions: {
       shouldExtractLiteralValuesFromEnum: true,
