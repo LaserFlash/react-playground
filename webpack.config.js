@@ -3,12 +3,11 @@ const path = require('path');
 const autoprefixer = require('autoprefixer');
 const flexfixes = require('postcss-flexbugs-fixes');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const { merge } = require('webpack-merge');
 
-const env = process.env.npm_lifecycle_event === 'build' ? 'production' : 'dev';
+const env = process.env.npm_lifecycle_event.includes('build') ? 'production' : 'dev';
 const devMode = env !== 'production';
 
 let config = {};
@@ -43,6 +42,30 @@ const common = {
         options: {
           plugins: [devMode && require.resolve('react-refresh/babel')].filter(Boolean),
         },
+      },
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [autoprefixer(), flexfixes()],
+              },
+            },
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sassOptions: {
+                includePaths: [path.resolve(__dirname, 'src')],
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.(png|svg|jpg|gif|woff|woff2|eot|ttf)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -91,37 +114,6 @@ switch (env) {
         // if you need to proxy a backend server this is the place to do it:
         // see https://webpack.js.org/configuration/dev-server/#devserver-proxy
       },
-
-      // because we need to use MiniCssExtractPlugin for prod, we have to specify the 'dev' scss test here
-      // rather than in common, or else they get merged weirdly
-      module: {
-        rules: [
-          {
-            test: /\.scss$/,
-            exclude: /node_modules/,
-            use: [
-              'style-loader',
-              'css-loader',
-              {
-                loader: 'postcss-loader',
-                options: {
-                  postcssOptions: {
-                    plugins: [autoprefixer(), flexfixes()],
-                  },
-                },
-              },
-              {
-                loader: 'sass-loader',
-                options: {
-                  sassOptions: {
-                    includePaths: [path.resolve(__dirname, 'src')],
-                  },
-                },
-              },
-            ],
-          },
-        ],
-      },
     });
     break;
   case 'production':
@@ -129,36 +121,6 @@ switch (env) {
     // but we want to only use MiniCssExtractPlugin for prod, not dev
     config = merge(common, {
       devtool: 'source-map',
-      module: {
-        rules: [
-          {
-            test: /\.scss$/,
-            exclude: /node_modules/,
-            use: [
-              MiniCssExtractPlugin.loader,
-              'css-loader',
-              {
-                loader: 'postcss-loader',
-                options: {
-                  postcssOptions: {
-                    plugins: [autoprefixer(), flexfixes()],
-                  },
-                },
-              },
-              {
-                loader: 'sass-loader',
-                options: {
-                  sassOptions: {
-                    includePaths: [path.resolve(__dirname, 'src')],
-                  },
-                },
-              },
-            ],
-          },
-        ],
-      },
-
-      plugins: [new MiniCssExtractPlugin()],
     });
     break;
   default:
